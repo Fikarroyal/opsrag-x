@@ -13,15 +13,8 @@
 ![Tests](https://img.shields.io/badge/pytest-99%20passed-22c55e?style=flat-square)
 ![Data](https://img.shields.io/badge/data-sintetis-f59e0b?style=flat-square)
 
-**OpsRAG-X** adalah *investigation agent* (bukan chatbot, bukan agen remediasi otomatis) yang membantu tim IT rumah sakit kecil menyelidiki insiden infrastruktur.
+**OpsRAG-X** adalah *investigation agent* (bukan chatbot, bukan agen remediasi otomatis) yang membantu tim IT rumah sakit dalam menyelidiki insiden infrastruktur.
 Agen membaca tiket, memilih SOP yang berlaku **pada waktu kejadian**, mencari insiden historis, memeriksa topologi, memanggil tool MCP **read-only**, mengorelasikan log secara temporal, menyusun hipotesis, menghitung *evidence confidence score*, lalu menghasilkan laporan beserta jejak audit.
-
-</div>
-
-> [!NOTE]
-> Seluruh data adalah **sintetis** (rumah sakit fiktif "RS Yogyakarta"). Tidak ada data pasien. Semua keluaran adalah rekomendasi yang harus diverifikasi staf IT.
-
-<br>
 
 ## <img src="docs/assets/icons/table-of-contents.svg" width="26" align="top"> Daftar isi
 
@@ -39,7 +32,7 @@ Agen membaca tiket, memilih SOP yang berlaku **pada waktu kejadian**, mencari in
 
 ## <img src="docs/assets/icons/target.svg" width="26" align="top"> Masalah dan tujuan
 
-Di RS kecil, satu atau dua staf IT menangani jaringan, server, SIMRS, printer, dan perangkat unit. Saat tiket "SIMRS tidak bisa dibuka dari Poli 3" masuk, mereka harus mengingat SOP versi mana yang berlaku, mencari kejadian serupa, memeriksa log beberapa perangkat, dan menentukan urutan sebab-akibat secara manual.
+Di RS, satu atau dua staf IT menangani jaringan, server, SIMRS, printer, dan perangkat unit. Saat tiket "SIMRS tidak bisa dibuka dari Poli 3" masuk, mereka harus mengingat SOP versi mana yang berlaku, mencari kejadian serupa, memeriksa log beberapa perangkat, dan menentukan urutan sebab-akibat secara manual.
 
 Tujuan OpsRAG-X:
 
