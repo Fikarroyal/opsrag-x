@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-label="OpsRAG-X">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0c4a6e"/><stop offset="0.6" stop-color="#0369a1"/><stop offset="1" stop-color="#0ea5e9"/></linearGradient>
+<pattern id="p" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#ffffff" fill-opacity="0.12"/></pattern></defs>
+<rect width="1200" height="300" rx="18" fill="url(#g)"/><rect width="1200" height="300" rx="18" fill="url(#p)"/>
+<g transform="translate(80,52) scale(3)" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+  <path d="m9 12 2 2 4-4" />
+</g>
+<text x="170" y="100" font-size="56" font-weight="700" fill="#ffffff" font-family="Segoe UI, Helvetica, Arial, sans-serif">OpsRAG-X</text>
+<text x="80" y="160" font-size="22" fill="#e0f2fe" font-family="Segoe UI, Helvetica, Arial, sans-serif">Temporal Evidence-Based Incident Investigation Agent</text>
+<text x="80" y="192" font-size="18" fill="#bae6fd" font-family="Segoe UI, Helvetica, Arial, sans-serif">untuk infrastruktur IT rumah sakit kecil</text>
+<g transform="translate(80,222)"><rect width="270" height="40" rx="20" fill="#ffffff" fill-opacity="0.12" stroke="#ffffff" stroke-opacity="0.35"/><g transform="translate(14,8) scale(1)" fill="none" stroke="#e0f2fe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="m21 21-4.34-4.34" />
+  <circle cx="11" cy="11" r="8" />
+</g><text x="46" y="26" font-size="15" fill="#f0f9ff" font-family="Segoe UI, Helvetica, Arial, sans-serif">Retrieval versi-sadar waktu</text></g><g transform="translate(366,222)"><rect width="250" height="40" rx="20" fill="#ffffff" fill-opacity="0.12" stroke="#ffffff" stroke-opacity="0.35"/><g transform="translate(14,8) scale(1)" fill="none" stroke="#e0f2fe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <rect width="8" height="8" x="3" y="3" rx="2" />
+  <path d="M7 11v4a2 2 0 0 0 2 2h4" />
+  <rect width="8" height="8" x="13" y="13" rx="2" />
+</g><text x="46" y="26" font-size="15" fill="#f0f9ff" font-family="Segoe UI, Helvetica, Arial, sans-serif">Korelasi log temporal</text></g><g transform="translate(632,222)"><rect width="230" height="40" rx="20" fill="#ffffff" fill-opacity="0.12" stroke="#ffffff" stroke-opacity="0.35"/><g transform="translate(14,8) scale(1)" fill="none" stroke="#e0f2fe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+  <path d="m9 12 2 2 4-4" />
+</g><text x="46" y="26" font-size="15" fill="#f0f9ff" font-family="Segoe UI, Helvetica, Arial, sans-serif">Tool MCP read-only</text></g><g transform="translate(878,222)"><rect width="200" height="40" rx="20" fill="#ffffff" fill-opacity="0.12" stroke="#ffffff" stroke-opacity="0.35"/><g transform="translate(14,8) scale(1)" fill="none" stroke="#e0f2fe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M13 5h8" />
+  <path d="M13 12h8" />
+  <path d="M13 19h8" />
+  <path d="m3 17 2 2 4-4" />
+  <path d="m3 7 2 2 4-4" />
+</g><text x="46" y="26" font-size="15" fill="#f0f9ff" font-family="Segoe UI, Helvetica, Arial, sans-serif">Audit dan replay</text></g>
+</svg>
