@@ -1,0 +1,2 @@
+# Optional: real semantic embeddings (BAAI/bge-small-en-v1.5). Large download (PyTorch).
+sentence-transformers>=3.0

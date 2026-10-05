@@ -1,0 +1,6 @@
+-r requirements.txt
+-r requirements-postgres.txt
+pytest>=8.0
+ruff>=0.4
+black>=24.0
+mypy>=1.10

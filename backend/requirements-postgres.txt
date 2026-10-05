@@ -1,0 +1,2 @@
+# PostgreSQL driver (only when DATABASE_URL points to PostgreSQL / Docker Compose)
+psycopg[binary]>=3.1
