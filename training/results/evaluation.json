@@ -1,0 +1,16 @@
+{
+  "rule_based_baseline": {
+    "validation_split": {
+      "n": 26,
+      "category_accuracy": 0.9231,
+      "severity_accuracy": 1.0,
+      "scope_accuracy": 1.0
+    },
+    "benchmark": {
+      "n": 50,
+      "category_accuracy": 0.98,
+      "severity_accuracy": 1.0
+    }
+  },
+  "fine_tuned_model": "not evaluated (no --model-dir; training is optional)"
+}

@@ -1,0 +1,5 @@
+# OPTIONAL: only needed for LoRA fine-tuning (not for running the application)
+torch>=2.2
+transformers>=4.44
+peft>=0.12
+accelerate>=0.33
