@@ -1,0 +1,1667 @@
+{
+  "generated_at": "2026-10-04T21:51:18",
+  "benchmark_size": 50,
+  "k": 8,
+  "embedding": "hashing-lexical-384",
+  "classifier": "rule-based",
+  "mcp_transport": "mcp",
+  "retrieval_weights": {
+    "semantic": 0.45,
+    "temporal": 0.25,
+    "category": 0.1,
+    "service": 0.1,
+    "source": 0.1
+  },
+  "experiments": [
+    {
+      "id": "A",
+      "name": "LLM tanpa RAG",
+      "description": "Classifier only; root cause = symptom category (no retrieval, no tools)",
+      "n": 50,
+      "metrics": {
+        "classification_accuracy": 0.98,
+        "severity_accuracy": 1.0,
+        "root_cause_agreement": 0.78,
+        "evidence_coverage": 0.0,
+        "avg_time_s": 0.0013
+      }
+    },
+    {
+      "id": "B",
+      "name": "RAG tanpa temporal weighting",
+      "description": "Hybrid retrieval with temporal weight = 0; vote over retrieved incidents",
+      "n": 50,
+      "metrics": {
+        "classification_accuracy": 0.98,
+        "severity_accuracy": 1.0,
+        "precision_at_k": 0.965,
+        "recall_at_k": 0.965,
+        "historical_similarity": 0.5366,
+        "sop_hit_rate": 0.6933,
+        "root_cause_agreement": 1.0,
+        "evidence_coverage": 0.0,
+        "avg_time_s": 0.0694
+      }
+    },
+    {
+      "id": "C",
+      "name": "RAG + temporal weighting",
+      "description": "Hybrid retrieval with temporal decay; vote over retrieved incidents",
+      "n": 50,
+      "metrics": {
+        "classification_accuracy": 0.98,
+        "severity_accuracy": 1.0,
+        "precision_at_k": 0.8275,
+        "recall_at_k": 0.8275,
+        "historical_similarity": 0.4796,
+        "sop_hit_rate": 0.6933,
+        "root_cause_agreement": 1.0,
+        "evidence_coverage": 0.0,
+        "avg_time_s": 0.0686
+      }
+    },
+    {
+      "id": "D",
+      "name": "RAG + temporal + topology + MCP evidence",
+      "description": "Full investigation pipeline with hypothesis scoring",
+      "n": 50,
+      "metrics": {
+        "classification_accuracy": 0.98,
+        "severity_accuracy": 1.0,
+        "precision_at_k": 0.8175,
+        "recall_at_k": 0.8175,
+        "historical_similarity": 0.4354,
+        "sop_hit_rate": 0.7033,
+        "tool_selection_f1": 0.8712,
+        "root_cause_agreement": 1.0,
+        "evidence_coverage": 0.9414,
+        "avg_time_s": 0.2261
+      }
+    }
+  ],
+  "items": [
+    {
+      "id": "BM-001",
+      "scenario": "S1",
+      "description": "SIMRS tidak bisa dibuka dari komputer Poli 3.",
+      "expected": {
+        "category": "application",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "A": {
+        "category": "application",
+        "severity": "medium",
+        "root_cause": "application"
+      },
+      "B": {
+        "root_cause": "network",
+        "precision_at_k": 0.625
+      },
+      "C": {
+        "root_cause": "network",
+        "precision_at_k": 0.75
+      },
+      "D": {
+        "category": "application",
+        "root_cause": "network",
+        "top_hypothesis": "H_NET_ACCESS",
+        "confidence": 0.8821,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-002",
+      "scenario": "S1",
+      "description": "Beberapa komputer di Poli 3 tidak dapat membuka SIMRS. Internet umum masih dapat digunakan. Gangguan mulai sekitar pukul 09:42.",
+      "expected": {
+        "category": "application",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "A": {
+        "category": "application",
+        "severity": "medium",
+        "root_cause": "application"
+      },
+      "B": {
+        "root_cause": "network",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "network",
+        "precision_at_k": 0.875
+      },
+      "D": {
+        "category": "application",
+        "root_cause": "network",
+        "top_hypothesis": "H_NET_ACCESS",
+        "confidence": 0.8489,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-003",
+      "scenario": "S1",
+      "description": "Aplikasi SIMRS di Poli 3 loading terus lalu timeout.",
+      "expected": {
+        "category": "application",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "A": {
+        "category": "application",
+        "severity": "medium",
+        "root_cause": "application"
+      },
+      "B": {
+        "root_cause": "network",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "network",
+        "precision_at_k": 0.75
+      },
+      "D": {
+        "category": "application",
+        "root_cause": "network",
+        "top_hypothesis": "H_NET_ACCESS",
+        "confidence": 0.8843,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-004",
+      "scenario": "S1",
+      "description": "Poli 3 tidak bisa akses SIMRS, koneksi putus-putus sejak pukul 09:42.",
+      "expected": {
+        "category": "network",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "A": {
+        "category": "network",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "B": {
+        "root_cause": "network",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "network",
+        "precision_at_k": 0.875
+      },
+      "D": {
+        "category": "network",
+        "root_cause": "network",
+        "top_hypothesis": "H_NET_ACCESS",
+        "confidence": 0.8077,
+        "conclusive": true,
+        "missing_tags": [
+          "dns_ok"
+        ]
+      }
+    },
+    {
+      "id": "BM-005",
+      "scenario": "S1",
+      "description": "Users in Poli 3 cannot open SIMRS since 09:42, other units are fine.",
+      "expected": {
+        "category": "application",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "A": {
+        "category": "application",
+        "severity": "medium",
+        "root_cause": "application"
+      },
+      "B": {
+        "root_cause": "network",
+        "precision_at_k": 0.625
+      },
+      "C": {
+        "root_cause": "network",
+        "precision_at_k": 0.75
+      },
+      "D": {
+        "category": "application",
+        "root_cause": "network",
+        "top_hypothesis": "H_NET_ACCESS",
+        "confidence": 0.8792,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-006",
+      "scenario": "S1",
+      "description": "Dokter di Poli 3 melaporkan SIMRS tidak merespons sejak pukul 09:42.",
+      "expected": {
+        "category": "application",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "A": {
+        "category": "application",
+        "severity": "medium",
+        "root_cause": "application"
+      },
+      "B": {
+        "root_cause": "network",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "network",
+        "precision_at_k": 0.75
+      },
+      "D": {
+        "category": "application",
+        "root_cause": "network",
+        "top_hypothesis": "H_NET_ACCESS",
+        "confidence": 0.8831,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-007",
+      "scenario": "S1",
+      "description": "Komputer Poli 3 mengalami packet loss dan SIMRS tidak bisa diakses.",
+      "expected": {
+        "category": "network",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "A": {
+        "category": "network",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "B": {
+        "root_cause": "network",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "network",
+        "precision_at_k": 0.875
+      },
+      "D": {
+        "category": "network",
+        "root_cause": "network",
+        "top_hypothesis": "H_NET_ACCESS",
+        "confidence": 0.8111,
+        "conclusive": true,
+        "missing_tags": [
+          "dns_ok"
+        ]
+      }
+    },
+    {
+      "id": "BM-008",
+      "scenario": "S1",
+      "description": "SIMRS Poli 3 error timeout saat membuka menu pendaftaran.",
+      "expected": {
+        "category": "application",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "A": {
+        "category": "application",
+        "severity": "medium",
+        "root_cause": "application"
+      },
+      "B": {
+        "root_cause": "network",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "network",
+        "precision_at_k": 0.875
+      },
+      "D": {
+        "category": "application",
+        "root_cause": "network",
+        "top_hypothesis": "H_NET_ACCESS",
+        "confidence": 0.8799,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-009",
+      "scenario": "S1",
+      "description": "Beberapa PC di Poli 3 tidak dapat terhubung ke server aplikasi pukul 09:42.",
+      "expected": {
+        "category": "network",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "A": {
+        "category": "network",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "B": {
+        "root_cause": "network",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "network",
+        "precision_at_k": 0.75
+      },
+      "D": {
+        "category": "network",
+        "root_cause": "network",
+        "top_hypothesis": "H_NET_ACCESS",
+        "confidence": 0.8096,
+        "conclusive": true,
+        "missing_tags": [
+          "dns_ok"
+        ]
+      }
+    },
+    {
+      "id": "BM-010",
+      "scenario": "S1",
+      "description": "Poli 3 tidak dapat menggunakan SIMRS, unit lain normal.",
+      "expected": {
+        "category": "application",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "A": {
+        "category": "application",
+        "severity": "medium",
+        "root_cause": "application"
+      },
+      "B": {
+        "root_cause": "network",
+        "precision_at_k": 0.875
+      },
+      "C": {
+        "root_cause": "network",
+        "precision_at_k": 0.75
+      },
+      "D": {
+        "category": "application",
+        "root_cause": "network",
+        "top_hypothesis": "H_NET_ACCESS",
+        "confidence": 0.8848,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-011",
+      "scenario": "S2",
+      "description": "DNS internal tidak bisa resolve server SIMRS.",
+      "expected": {
+        "category": "dns",
+        "severity": "critical",
+        "root_cause": "dns"
+      },
+      "A": {
+        "category": "dns",
+        "severity": "critical",
+        "root_cause": "dns"
+      },
+      "B": {
+        "root_cause": "dns",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "dns",
+        "precision_at_k": 1.0
+      },
+      "D": {
+        "category": "dns",
+        "root_cause": "dns",
+        "top_hypothesis": "H_DNS",
+        "confidence": 0.9206,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-012",
+      "scenario": "S2",
+      "description": "nslookup simrs.internal gagal di banyak komputer sejak pukul 13:15.",
+      "expected": {
+        "category": "dns",
+        "severity": "critical",
+        "root_cause": "dns"
+      },
+      "A": {
+        "category": "dns",
+        "severity": "critical",
+        "root_cause": "dns"
+      },
+      "B": {
+        "root_cause": "dns",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "dns",
+        "precision_at_k": 1.0
+      },
+      "D": {
+        "category": "dns",
+        "root_cause": "dns",
+        "top_hypothesis": "H_DNS",
+        "confidence": 0.9273,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-013",
+      "scenario": "S2",
+      "description": "SIMRS tidak bisa dibuka lewat nama host tetapi bisa lewat IP, mulai pukul 13:15. DNS bermasalah.",
+      "expected": {
+        "category": "dns",
+        "severity": "critical",
+        "root_cause": "dns"
+      },
+      "A": {
+        "category": "dns",
+        "severity": "critical",
+        "root_cause": "dns"
+      },
+      "B": {
+        "root_cause": "dns",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "dns",
+        "precision_at_k": 1.0
+      },
+      "D": {
+        "category": "dns",
+        "root_cause": "dns",
+        "top_hypothesis": "H_DNS",
+        "confidence": 0.9277,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-014",
+      "scenario": "S2",
+      "description": "Semua unit gagal resolve nama server SIMRS.",
+      "expected": {
+        "category": "dns",
+        "severity": "critical",
+        "root_cause": "dns"
+      },
+      "A": {
+        "category": "dns",
+        "severity": "critical",
+        "root_cause": "dns"
+      },
+      "B": {
+        "root_cause": "dns",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "dns",
+        "precision_at_k": 0.875
+      },
+      "D": {
+        "category": "dns",
+        "root_cause": "dns",
+        "top_hypothesis": "H_DNS",
+        "confidence": 0.9157,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-015",
+      "scenario": "S2",
+      "description": "Internal DNS resolution fails for simrs.internal across the hospital since 13:15.",
+      "expected": {
+        "category": "dns",
+        "severity": "critical",
+        "root_cause": "dns"
+      },
+      "A": {
+        "category": "dns",
+        "severity": "critical",
+        "root_cause": "dns"
+      },
+      "B": {
+        "root_cause": "dns",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "dns",
+        "precision_at_k": 1.0
+      },
+      "D": {
+        "category": "dns",
+        "root_cause": "dns",
+        "top_hypothesis": "H_DNS",
+        "confidence": 0.9155,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-016",
+      "scenario": "S2",
+      "description": "Komputer di seluruh rumah sakit tidak dapat resolve simrs.internal.",
+      "expected": {
+        "category": "dns",
+        "severity": "critical",
+        "root_cause": "dns"
+      },
+      "A": {
+        "category": "dns",
+        "severity": "critical",
+        "root_cause": "dns"
+      },
+      "B": {
+        "root_cause": "dns",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "dns",
+        "precision_at_k": 1.0
+      },
+      "D": {
+        "category": "dns",
+        "root_cause": "dns",
+        "top_hypothesis": "H_DNS",
+        "confidence": 0.9161,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-017",
+      "scenario": "S2",
+      "description": "Nama host server SIMRS tidak bisa di-resolve, DNS error SERVFAIL.",
+      "expected": {
+        "category": "dns",
+        "severity": "critical",
+        "root_cause": "dns"
+      },
+      "A": {
+        "category": "dns",
+        "severity": "critical",
+        "root_cause": "dns"
+      },
+      "B": {
+        "root_cause": "dns",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "dns",
+        "precision_at_k": 1.0
+      },
+      "D": {
+        "category": "dns",
+        "root_cause": "dns",
+        "top_hypothesis": "H_DNS",
+        "confidence": 0.9193,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-018",
+      "scenario": "S2",
+      "description": "DNS server tidak menjawab query, semua unit terdampak sejak 13:15.",
+      "expected": {
+        "category": "dns",
+        "severity": "critical",
+        "root_cause": "dns"
+      },
+      "A": {
+        "category": "dns",
+        "severity": "critical",
+        "root_cause": "dns"
+      },
+      "B": {
+        "root_cause": "dns",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "dns",
+        "precision_at_k": 1.0
+      },
+      "D": {
+        "category": "dns",
+        "root_cause": "dns",
+        "top_hypothesis": "H_DNS",
+        "confidence": 0.916,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-019",
+      "scenario": "S2",
+      "description": "Resolve nama simrs.internal timeout di semua komputer.",
+      "expected": {
+        "category": "dns",
+        "severity": "critical",
+        "root_cause": "dns"
+      },
+      "A": {
+        "category": "dns",
+        "severity": "critical",
+        "root_cause": "dns"
+      },
+      "B": {
+        "root_cause": "dns",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "dns",
+        "precision_at_k": 1.0
+      },
+      "D": {
+        "category": "dns",
+        "root_cause": "dns",
+        "top_hypothesis": "H_DNS",
+        "confidence": 0.9179,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-020",
+      "scenario": "S2",
+      "description": "Gangguan DNS internal, SIMRS tidak dapat diakses dengan nama.",
+      "expected": {
+        "category": "dns",
+        "severity": "critical",
+        "root_cause": "dns"
+      },
+      "A": {
+        "category": "dns",
+        "severity": "critical",
+        "root_cause": "dns"
+      },
+      "B": {
+        "root_cause": "dns",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "dns",
+        "precision_at_k": 1.0
+      },
+      "D": {
+        "category": "dns",
+        "root_cause": "dns",
+        "top_hypothesis": "H_DNS",
+        "confidence": 0.925,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-021",
+      "scenario": "S3",
+      "description": "SIMRS error database connection timeout di semua unit.",
+      "expected": {
+        "category": "database",
+        "severity": "critical",
+        "root_cause": "database"
+      },
+      "A": {
+        "category": "database",
+        "severity": "critical",
+        "root_cause": "database"
+      },
+      "B": {
+        "root_cause": "database",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "database",
+        "precision_at_k": 1.0
+      },
+      "D": {
+        "category": "database",
+        "root_cause": "database",
+        "top_hypothesis": "H_DB",
+        "confidence": 0.8475,
+        "conclusive": true,
+        "missing_tags": [
+          "dns_ok"
+        ]
+      }
+    },
+    {
+      "id": "BM-022",
+      "scenario": "S3",
+      "description": "SIMRS database timeout sejak pukul 10:30, transaksi tidak bisa disimpan.",
+      "expected": {
+        "category": "database",
+        "severity": "critical",
+        "root_cause": "database"
+      },
+      "A": {
+        "category": "database",
+        "severity": "critical",
+        "root_cause": "database"
+      },
+      "B": {
+        "root_cause": "database",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "database",
+        "precision_at_k": 1.0
+      },
+      "D": {
+        "category": "database",
+        "root_cause": "database",
+        "top_hypothesis": "H_DB",
+        "confidence": 0.8385,
+        "conclusive": true,
+        "missing_tags": [
+          "dns_ok"
+        ]
+      }
+    },
+    {
+      "id": "BM-023",
+      "scenario": "S3",
+      "description": "Semua unit mendapat error 500 di SIMRS, log menunjukkan database timeout.",
+      "expected": {
+        "category": "database",
+        "severity": "critical",
+        "root_cause": "database"
+      },
+      "A": {
+        "category": "database",
+        "severity": "critical",
+        "root_cause": "database"
+      },
+      "B": {
+        "root_cause": "database",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "database",
+        "precision_at_k": 1.0
+      },
+      "D": {
+        "category": "database",
+        "root_cause": "database",
+        "top_hypothesis": "H_DB",
+        "confidence": 0.8479,
+        "conclusive": true,
+        "missing_tags": [
+          "dns_ok"
+        ]
+      }
+    },
+    {
+      "id": "BM-024",
+      "scenario": "S3",
+      "description": "Koneksi database SIMRS gagal, aplikasi menampilkan connection timeout.",
+      "expected": {
+        "category": "database",
+        "severity": "critical",
+        "root_cause": "database"
+      },
+      "A": {
+        "category": "database",
+        "severity": "critical",
+        "root_cause": "database"
+      },
+      "B": {
+        "root_cause": "database",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "database",
+        "precision_at_k": 1.0
+      },
+      "D": {
+        "category": "database",
+        "root_cause": "database",
+        "top_hypothesis": "H_DB",
+        "confidence": 0.8444,
+        "conclusive": true,
+        "missing_tags": [
+          "dns_ok"
+        ]
+      }
+    },
+    {
+      "id": "BM-025",
+      "scenario": "S3",
+      "description": "Database SIMRS tidak merespons sejak 10:30 di seluruh rumah sakit.",
+      "expected": {
+        "category": "database",
+        "severity": "critical",
+        "root_cause": "database"
+      },
+      "A": {
+        "category": "database",
+        "severity": "critical",
+        "root_cause": "database"
+      },
+      "B": {
+        "root_cause": "database",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "database",
+        "precision_at_k": 1.0
+      },
+      "D": {
+        "category": "database",
+        "root_cause": "database",
+        "top_hypothesis": "H_DB",
+        "confidence": 0.8386,
+        "conclusive": true,
+        "missing_tags": [
+          "dns_ok"
+        ]
+      }
+    },
+    {
+      "id": "BM-026",
+      "scenario": "S3",
+      "description": "SIMRS database connection error, semua user terdampak.",
+      "expected": {
+        "category": "database",
+        "severity": "critical",
+        "root_cause": "database"
+      },
+      "A": {
+        "category": "database",
+        "severity": "critical",
+        "root_cause": "database"
+      },
+      "B": {
+        "root_cause": "database",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "database",
+        "precision_at_k": 1.0
+      },
+      "D": {
+        "category": "database",
+        "root_cause": "database",
+        "top_hypothesis": "H_DB",
+        "confidence": 0.8426,
+        "conclusive": true,
+        "missing_tags": [
+          "dns_ok"
+        ]
+      }
+    },
+    {
+      "id": "BM-027",
+      "scenario": "S3",
+      "description": "Query database SIMRS timeout dan aplikasi gagal menyimpan data.",
+      "expected": {
+        "category": "database",
+        "severity": "critical",
+        "root_cause": "database"
+      },
+      "A": {
+        "category": "database",
+        "severity": "critical",
+        "root_cause": "database"
+      },
+      "B": {
+        "root_cause": "database",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "database",
+        "precision_at_k": 0.875
+      },
+      "D": {
+        "category": "database",
+        "root_cause": "database",
+        "top_hypothesis": "H_DB",
+        "confidence": 0.8405,
+        "conclusive": true,
+        "missing_tags": [
+          "dns_ok"
+        ]
+      }
+    },
+    {
+      "id": "BM-028",
+      "scenario": "S3",
+      "description": "The SIMRS database connection times out for every unit since 10:30.",
+      "expected": {
+        "category": "database",
+        "severity": "critical",
+        "root_cause": "database"
+      },
+      "A": {
+        "category": "database",
+        "severity": "critical",
+        "root_cause": "database"
+      },
+      "B": {
+        "root_cause": "database",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "database",
+        "precision_at_k": 1.0
+      },
+      "D": {
+        "category": "database",
+        "root_cause": "database",
+        "top_hypothesis": "H_DB",
+        "confidence": 0.8351,
+        "conclusive": true,
+        "missing_tags": [
+          "dns_ok"
+        ]
+      }
+    },
+    {
+      "id": "BM-029",
+      "scenario": "S3",
+      "description": "SIMRS lambat lalu error database di semua unit pukul 10:30.",
+      "expected": {
+        "category": "database",
+        "severity": "critical",
+        "root_cause": "database"
+      },
+      "A": {
+        "category": "database",
+        "severity": "critical",
+        "root_cause": "database"
+      },
+      "B": {
+        "root_cause": "database",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "database",
+        "precision_at_k": 1.0
+      },
+      "D": {
+        "category": "database",
+        "root_cause": "database",
+        "top_hypothesis": "H_DB",
+        "confidence": 0.8455,
+        "conclusive": true,
+        "missing_tags": [
+          "dns_ok"
+        ]
+      }
+    },
+    {
+      "id": "BM-030",
+      "scenario": "S3",
+      "description": "Seluruh unit tidak bisa menyimpan transaksi karena database timeout.",
+      "expected": {
+        "category": "database",
+        "severity": "critical",
+        "root_cause": "database"
+      },
+      "A": {
+        "category": "database",
+        "severity": "critical",
+        "root_cause": "database"
+      },
+      "B": {
+        "root_cause": "database",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "database",
+        "precision_at_k": 1.0
+      },
+      "D": {
+        "category": "database",
+        "root_cause": "database",
+        "top_hypothesis": "H_DB",
+        "confidence": 0.8502,
+        "conclusive": true,
+        "missing_tags": [
+          "dns_ok"
+        ]
+      }
+    },
+    {
+      "id": "BM-031",
+      "scenario": "S4",
+      "description": "Server SIMRS mengalami response lambat.",
+      "expected": {
+        "category": "server",
+        "severity": "high",
+        "root_cause": "server"
+      },
+      "A": {
+        "category": "server",
+        "severity": "high",
+        "root_cause": "server"
+      },
+      "B": {
+        "root_cause": "server",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "server",
+        "precision_at_k": 0.875
+      },
+      "D": {
+        "category": "server",
+        "root_cause": "server",
+        "top_hypothesis": "H_OVERLOAD",
+        "confidence": 0.797,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-032",
+      "scenario": "S4",
+      "description": "SIMRS sangat lambat di semua unit sejak pukul 14:05, server terlihat overload.",
+      "expected": {
+        "category": "server",
+        "severity": "high",
+        "root_cause": "server"
+      },
+      "A": {
+        "category": "server",
+        "severity": "high",
+        "root_cause": "server"
+      },
+      "B": {
+        "root_cause": "server",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "server",
+        "precision_at_k": 0.75
+      },
+      "D": {
+        "category": "server",
+        "root_cause": "server",
+        "top_hypothesis": "H_OVERLOAD",
+        "confidence": 0.8023,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-033",
+      "scenario": "S4",
+      "description": "Response server SIMRS lambat, halaman butuh lebih dari 5 detik sejak 14:05.",
+      "expected": {
+        "category": "server",
+        "severity": "high",
+        "root_cause": "server"
+      },
+      "A": {
+        "category": "server",
+        "severity": "high",
+        "root_cause": "server"
+      },
+      "B": {
+        "root_cause": "server",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "server",
+        "precision_at_k": 0.625
+      },
+      "D": {
+        "category": "server",
+        "root_cause": "server",
+        "top_hypothesis": "H_OVERLOAD",
+        "confidence": 0.7938,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-034",
+      "scenario": "S4",
+      "description": "Server aplikasi SIMRS lemot, CPU tinggi, semua unit mengeluh.",
+      "expected": {
+        "category": "server",
+        "severity": "high",
+        "root_cause": "server"
+      },
+      "A": {
+        "category": "server",
+        "severity": "high",
+        "root_cause": "server"
+      },
+      "B": {
+        "root_cause": "server",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "server",
+        "precision_at_k": 0.625
+      },
+      "D": {
+        "category": "server",
+        "root_cause": "server",
+        "top_hypothesis": "H_OVERLOAD",
+        "confidence": 0.8021,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-035",
+      "scenario": "S4",
+      "description": "SIMRS server is very slow for all units since 14:05.",
+      "expected": {
+        "category": "server",
+        "severity": "high",
+        "root_cause": "server"
+      },
+      "A": {
+        "category": "server",
+        "severity": "high",
+        "root_cause": "server"
+      },
+      "B": {
+        "root_cause": "server",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "server",
+        "precision_at_k": 0.625
+      },
+      "D": {
+        "category": "server",
+        "root_cause": "server",
+        "top_hypothesis": "H_OVERLOAD",
+        "confidence": 0.7941,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-036",
+      "scenario": "S4",
+      "description": "Kinerja server SIMRS menurun drastis pukul 14:05, response lambat.",
+      "expected": {
+        "category": "server",
+        "severity": "high",
+        "root_cause": "server"
+      },
+      "A": {
+        "category": "server",
+        "severity": "high",
+        "root_cause": "server"
+      },
+      "B": {
+        "root_cause": "server",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "server",
+        "precision_at_k": 0.5
+      },
+      "D": {
+        "category": "server",
+        "root_cause": "server",
+        "top_hypothesis": "H_OVERLOAD",
+        "confidence": 0.7908,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-037",
+      "scenario": "S4",
+      "description": "Server SIMRS overload, semua komputer merasakan lambat.",
+      "expected": {
+        "category": "server",
+        "severity": "high",
+        "root_cause": "server"
+      },
+      "A": {
+        "category": "server",
+        "severity": "high",
+        "root_cause": "server"
+      },
+      "B": {
+        "root_cause": "server",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "server",
+        "precision_at_k": 0.625
+      },
+      "D": {
+        "category": "server",
+        "root_cause": "server",
+        "top_hypothesis": "H_OVERLOAD",
+        "confidence": 0.7974,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-038",
+      "scenario": "S4",
+      "description": "SIMRS response time tinggi di seluruh rumah sakit sejak 14:05.",
+      "expected": {
+        "category": "server",
+        "severity": "high",
+        "root_cause": "server"
+      },
+      "A": {
+        "category": "server",
+        "severity": "high",
+        "root_cause": "server"
+      },
+      "B": {
+        "root_cause": "server",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "server",
+        "precision_at_k": 0.625
+      },
+      "D": {
+        "category": "server",
+        "root_cause": "server",
+        "top_hypothesis": "H_OVERLOAD",
+        "confidence": 0.799,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-039",
+      "scenario": "S4",
+      "description": "Semua unit melaporkan SIMRS lambat dan sering timeout.",
+      "expected": {
+        "category": "server",
+        "severity": "high",
+        "root_cause": "server"
+      },
+      "A": {
+        "category": "server",
+        "severity": "high",
+        "root_cause": "server"
+      },
+      "B": {
+        "root_cause": "server",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "server",
+        "precision_at_k": 0.625
+      },
+      "D": {
+        "category": "server",
+        "root_cause": "server",
+        "top_hypothesis": "H_OVERLOAD",
+        "confidence": 0.7979,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-040",
+      "scenario": "S4",
+      "description": "Server SIMRS response lambat, memori dan CPU hampir penuh.",
+      "expected": {
+        "category": "server",
+        "severity": "high",
+        "root_cause": "server"
+      },
+      "A": {
+        "category": "server",
+        "severity": "high",
+        "root_cause": "server"
+      },
+      "B": {
+        "root_cause": "server",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "server",
+        "precision_at_k": 0.625
+      },
+      "D": {
+        "category": "server",
+        "root_cause": "server",
+        "top_hypothesis": "H_OVERLOAD",
+        "confidence": 0.7972,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-041",
+      "scenario": "S5",
+      "description": "Beberapa komputer di unit farmasi tidak dapat mengakses aplikasi.",
+      "expected": {
+        "category": "application",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "A": {
+        "category": "application",
+        "severity": "medium",
+        "root_cause": "application"
+      },
+      "B": {
+        "root_cause": "network",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "network",
+        "precision_at_k": 0.875
+      },
+      "D": {
+        "category": "application",
+        "root_cause": "network",
+        "top_hypothesis": "H_NET_ACCESS",
+        "confidence": 0.925,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-042",
+      "scenario": "S5",
+      "description": "Unit Farmasi tidak bisa membuka SIM-APOTEK sejak pukul 08:50.",
+      "expected": {
+        "category": "application",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "A": {
+        "category": "application",
+        "severity": "medium",
+        "root_cause": "application"
+      },
+      "B": {
+        "root_cause": "network",
+        "precision_at_k": 0.75
+      },
+      "C": {
+        "root_cause": "network",
+        "precision_at_k": 0.5
+      },
+      "D": {
+        "category": "application",
+        "root_cause": "network",
+        "top_hypothesis": "H_NET_ACCESS",
+        "confidence": 0.9121,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-043",
+      "scenario": "S5",
+      "description": "Semua komputer Farmasi tidak ada koneksi jaringan sejak 08:50.",
+      "expected": {
+        "category": "network",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "A": {
+        "category": "network",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "B": {
+        "root_cause": "network",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "network",
+        "precision_at_k": 0.875
+      },
+      "D": {
+        "category": "network",
+        "root_cause": "network",
+        "top_hypothesis": "H_NET_ACCESS",
+        "confidence": 0.8454,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-044",
+      "scenario": "S5",
+      "description": "Farmasi offline, komputer tidak bisa terhubung ke server.",
+      "expected": {
+        "category": "network",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "A": {
+        "category": "network",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "B": {
+        "root_cause": "network",
+        "precision_at_k": 0.875
+      },
+      "C": {
+        "root_cause": "network",
+        "precision_at_k": 0.625
+      },
+      "D": {
+        "category": "network",
+        "root_cause": "network",
+        "top_hypothesis": "H_NET_ACCESS",
+        "confidence": 0.8557,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-045",
+      "scenario": "S5",
+      "description": "Pharmacy computers cannot reach the application since 08:50.",
+      "expected": {
+        "category": "application",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "A": {
+        "category": "network",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "B": {
+        "root_cause": "network",
+        "precision_at_k": 0.625
+      },
+      "C": {
+        "root_cause": "network",
+        "precision_at_k": 0.625
+      },
+      "D": {
+        "category": "network",
+        "root_cause": "network",
+        "top_hypothesis": "H_NET_ACCESS",
+        "confidence": 0.8456,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-046",
+      "scenario": "S5",
+      "description": "Komputer farmasi tidak bisa akses SIMRS maupun SIM-APOTEK, jaringan putus.",
+      "expected": {
+        "category": "network",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "A": {
+        "category": "network",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "B": {
+        "root_cause": "network",
+        "precision_at_k": 0.875
+      },
+      "C": {
+        "root_cause": "network",
+        "precision_at_k": 0.75
+      },
+      "D": {
+        "category": "network",
+        "root_cause": "network",
+        "top_hypothesis": "H_NET_ACCESS",
+        "confidence": 0.8532,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-047",
+      "scenario": "S5",
+      "description": "SIM-APOTEK tidak bisa dibuka di Farmasi pukul 08:50, unit lain normal.",
+      "expected": {
+        "category": "application",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "A": {
+        "category": "application",
+        "severity": "medium",
+        "root_cause": "application"
+      },
+      "B": {
+        "root_cause": "network",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "network",
+        "precision_at_k": 0.5
+      },
+      "D": {
+        "category": "application",
+        "root_cause": "network",
+        "top_hypothesis": "H_NET_ACCESS",
+        "confidence": 0.9093,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-048",
+      "scenario": "S5",
+      "description": "Apoteker melaporkan seluruh PC Farmasi tidak dapat terhubung ke jaringan.",
+      "expected": {
+        "category": "network",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "A": {
+        "category": "network",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "B": {
+        "root_cause": "network",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "network",
+        "precision_at_k": 0.75
+      },
+      "D": {
+        "category": "network",
+        "root_cause": "network",
+        "top_hypothesis": "H_NET_ACCESS",
+        "confidence": 0.854,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-049",
+      "scenario": "S5",
+      "description": "Aplikasi apotek tidak dapat diakses dari Farmasi.",
+      "expected": {
+        "category": "application",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "A": {
+        "category": "application",
+        "severity": "medium",
+        "root_cause": "application"
+      },
+      "B": {
+        "root_cause": "network",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "network",
+        "precision_at_k": 0.875
+      },
+      "D": {
+        "category": "application",
+        "root_cause": "network",
+        "top_hypothesis": "H_NET_ACCESS",
+        "confidence": 0.9137,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    },
+    {
+      "id": "BM-050",
+      "scenario": "S5",
+      "description": "Unit farmasi tidak dapat mengakses aplikasi, tidak ada koneksi.",
+      "expected": {
+        "category": "network",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "A": {
+        "category": "network",
+        "severity": "medium",
+        "root_cause": "network"
+      },
+      "B": {
+        "root_cause": "network",
+        "precision_at_k": 1.0
+      },
+      "C": {
+        "root_cause": "network",
+        "precision_at_k": 0.75
+      },
+      "D": {
+        "category": "network",
+        "root_cause": "network",
+        "top_hypothesis": "H_NET_ACCESS",
+        "confidence": 0.8551,
+        "conclusive": true,
+        "missing_tags": []
+      }
+    }
+  ],
+  "notes": [
+    "Synthetic benchmark: 50 incident descriptions = 10 paraphrases of each of 5 temporal scenarios; infrastructure state per scenario is shared, so D's scores are optimistic for unseen failure types.",
+    "Expected labels were written before the classifier/engine and were not tuned afterwards.",
+    "Precision/Recall@K relevance = historical incidents of the scenario's failure pattern; temporal weighting can lower precision when recent incidents belong to other patterns.",
+    "Historical incidents and benchmark descriptions were authored from the same vocabulary, so retrieval-only root-cause agreement (B/C) is optimistic; D additionally gathers direct evidence (see evidence_coverage, tool_selection_f1).",
+    "Metrics not applicable to an experiment (e.g. retrieval in A, tool selection in A-C) are null, not zero."
+  ]
+}

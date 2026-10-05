@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+  body { margin: 0; }
+}
+@layer components {
+  .card { @apply rounded-lg border border-slate-200 bg-white shadow-sm; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-primary { @apply btn bg-brand-600 text-white hover:bg-brand-700; }
+  .btn-secondary { @apply btn border border-slate-300 bg-white text-slate-700 hover:bg-slate-50; }
+  .btn-danger { @apply btn bg-red-600 text-white hover:bg-red-700; }
+  .input { @apply w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500; }
+  /* Native <select>: custom chevron placed 14px from the right border (not flush against it) */
+  select.input {
+    @apply cursor-pointer appearance-none pr-10;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.875rem center;
+    background-size: 1rem 1rem;
+  }
+  .label { @apply mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500; }
+  .th { @apply whitespace-nowrap px-3 py-2 text-left text-xs font-semibold uppercase tracking-wide text-slate-500; }
+  .td { @apply px-3 py-2 text-sm text-slate-700; }
+}

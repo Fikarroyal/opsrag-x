@@ -1,0 +1,75 @@
+name: opsrag-x
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-opsragx}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-opsragx}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  mcp-server:
+    build:
+      context: .
+      dockerfile: mcp-server/Dockerfile
+    environment:
+      DEMO_MODE: ${DEMO_MODE:-true}
+    ports:
+      - "8001:8001"
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+      args:
+        INSTALL_SBERT: ${INSTALL_SBERT:-0}
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-opsragx}
+      MCP_SERVER_URL: http://mcp-server:8001
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://ollama:11434}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-qwen2.5:7b}
+      LLM_ENABLED: ${LLM_ENABLED:-true}
+      EMBEDDING_BACKEND: ${EMBEDDING_BACKEND:-auto}
+      DEMO_MODE: ${DEMO_MODE:-true}
+      CORS_ORIGINS: ${CORS_ORIGINS:-*}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mcp-server:
+        condition: service_started
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+
+  # Optional local LLM (CPU works, just slower). Enable with:  docker compose --profile ollama up
+  # Then pull a model once:  docker compose exec ollama ollama pull qwen2.5:7b
+  # Without it the system runs in DEMO_FALLBACK_MODE (rule-based classification/planning, same evidence pipeline).
+  ollama:
+    image: ollama/ollama:latest
+    profiles: ["ollama"]
+    volumes:
+      - ollama:/root/.ollama
+    ports:
+      - "11434:11434"
+
+volumes:
+  pgdata:
+  ollama:

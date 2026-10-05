@@ -1,0 +1,2199 @@
+{
+ "hospital": "RS Yogyakarta",
+ "synthetic": true,
+ "vlans": {
+  "10": "Management",
+  "20": "Server",
+  "30": "Poli",
+  "40": "Farmasi",
+  "50": "Kasir",
+  "60": "Laboratorium",
+  "70": "Penunjang/IGD"
+ },
+ "dns_records": {
+  "simrs.internal": "10.20.0.10",
+  "simrs-db.internal": "10.20.0.11",
+  "dns-01.internal": "10.20.0.2",
+  "file.internal": "10.20.0.20",
+  "monitor.internal": "10.20.0.30"
+ },
+ "nodes": [
+  {
+   "id": "RTR-CORE",
+   "hostname": "RTR-CORE",
+   "ip": "10.10.0.1",
+   "device_type": "router",
+   "vlan": 10,
+   "unit": "IT",
+   "status": "healthy",
+   "layer": 0,
+   "meta": {}
+  },
+  {
+   "id": "CORE-SW-01",
+   "hostname": "CORE-SW-01",
+   "ip": "10.10.0.2",
+   "device_type": "core_switch",
+   "vlan": 10,
+   "unit": "IT",
+   "status": "healthy",
+   "layer": 1,
+   "meta": {}
+  },
+  {
+   "id": "SW-DIST-01",
+   "hostname": "SW-DIST-01",
+   "ip": "10.10.0.3",
+   "device_type": "distribution_switch",
+   "vlan": 10,
+   "unit": "IT",
+   "status": "healthy",
+   "layer": 2,
+   "meta": {}
+  },
+  {
+   "id": "SW-DIST-02",
+   "hostname": "SW-DIST-02",
+   "ip": "10.10.0.4",
+   "device_type": "distribution_switch",
+   "vlan": 10,
+   "unit": "IT",
+   "status": "healthy",
+   "layer": 2,
+   "meta": {}
+  },
+  {
+   "id": "SIMRS-APP-01",
+   "hostname": "SIMRS-APP-01",
+   "ip": "10.20.0.10",
+   "device_type": "server",
+   "vlan": 20,
+   "unit": "IT",
+   "status": "healthy",
+   "layer": 1,
+   "meta": {
+    "role": "application",
+    "boot_time": "2026-09-16 04:12:00",
+    "os": "Ubuntu Server 22.04"
+   }
+  },
+  {
+   "id": "SIMRS-DB-01",
+   "hostname": "SIMRS-DB-01",
+   "ip": "10.20.0.11",
+   "device_type": "server",
+   "vlan": 20,
+   "unit": "IT",
+   "status": "healthy",
+   "layer": 1,
+   "meta": {
+    "role": "database",
+    "boot_time": "2026-08-30 02:05:00",
+    "os": "Ubuntu Server 22.04"
+   }
+  },
+  {
+   "id": "DNS-01",
+   "hostname": "DNS-01",
+   "ip": "10.20.0.2",
+   "device_type": "server",
+   "vlan": 20,
+   "unit": "IT",
+   "status": "healthy",
+   "layer": 1,
+   "meta": {
+    "role": "dns",
+    "boot_time": "2026-09-01 03:00:00",
+    "os": "Debian 12"
+   }
+  },
+  {
+   "id": "FILE-01",
+   "hostname": "FILE-01",
+   "ip": "10.20.0.20",
+   "device_type": "server",
+   "vlan": 20,
+   "unit": "IT",
+   "status": "healthy",
+   "layer": 1,
+   "meta": {
+    "role": "file",
+    "boot_time": "2026-09-10 01:30:00",
+    "os": "Windows Server 2019"
+   }
+  },
+  {
+   "id": "MONITOR-01",
+   "hostname": "MONITOR-01",
+   "ip": "10.20.0.30",
+   "device_type": "server",
+   "vlan": 20,
+   "unit": "IT",
+   "status": "healthy",
+   "layer": 1,
+   "meta": {
+    "role": "monitoring",
+    "boot_time": "2026-09-05 05:45:00",
+    "os": "Ubuntu Server 22.04"
+   }
+  },
+  {
+   "id": "SW-POLI1",
+   "hostname": "SW-POLI1",
+   "ip": "10.10.0.11",
+   "device_type": "access_switch",
+   "vlan": 10,
+   "unit": "Poli 1",
+   "status": "healthy",
+   "layer": 3,
+   "meta": {
+    "uplink": "Gi0/48"
+   }
+  },
+  {
+   "id": "PC-POLI1-001",
+   "hostname": "PC-POLI1-001",
+   "ip": "10.30.1.11",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 1",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI1-002",
+   "hostname": "PC-POLI1-002",
+   "ip": "10.30.1.12",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 1",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI1-003",
+   "hostname": "PC-POLI1-003",
+   "ip": "10.30.1.13",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 1",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI1-004",
+   "hostname": "PC-POLI1-004",
+   "ip": "10.30.1.14",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 1",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI1-005",
+   "hostname": "PC-POLI1-005",
+   "ip": "10.30.1.15",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 1",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI1-006",
+   "hostname": "PC-POLI1-006",
+   "ip": "10.30.1.16",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 1",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI1-007",
+   "hostname": "PC-POLI1-007",
+   "ip": "10.30.1.17",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 1",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI1-008",
+   "hostname": "PC-POLI1-008",
+   "ip": "10.30.1.18",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 1",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI1-009",
+   "hostname": "PC-POLI1-009",
+   "ip": "10.30.1.19",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 1",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI1-010",
+   "hostname": "PC-POLI1-010",
+   "ip": "10.30.1.20",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 1",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI1-011",
+   "hostname": "PC-POLI1-011",
+   "ip": "10.30.1.21",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 1",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI1-012",
+   "hostname": "PC-POLI1-012",
+   "ip": "10.30.1.22",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 1",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PRN-POLI1-001",
+   "hostname": "PRN-POLI1-001",
+   "ip": "10.30.1.23",
+   "device_type": "printer",
+   "vlan": 30,
+   "unit": "Poli 1",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "SW-POLI2",
+   "hostname": "SW-POLI2",
+   "ip": "10.10.0.12",
+   "device_type": "access_switch",
+   "vlan": 10,
+   "unit": "Poli 2",
+   "status": "healthy",
+   "layer": 3,
+   "meta": {
+    "uplink": "Gi0/48"
+   }
+  },
+  {
+   "id": "PC-POLI2-001",
+   "hostname": "PC-POLI2-001",
+   "ip": "10.30.2.11",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 2",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI2-002",
+   "hostname": "PC-POLI2-002",
+   "ip": "10.30.2.12",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 2",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI2-003",
+   "hostname": "PC-POLI2-003",
+   "ip": "10.30.2.13",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 2",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI2-004",
+   "hostname": "PC-POLI2-004",
+   "ip": "10.30.2.14",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 2",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI2-005",
+   "hostname": "PC-POLI2-005",
+   "ip": "10.30.2.15",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 2",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI2-006",
+   "hostname": "PC-POLI2-006",
+   "ip": "10.30.2.16",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 2",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI2-007",
+   "hostname": "PC-POLI2-007",
+   "ip": "10.30.2.17",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 2",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI2-008",
+   "hostname": "PC-POLI2-008",
+   "ip": "10.30.2.18",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 2",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI2-009",
+   "hostname": "PC-POLI2-009",
+   "ip": "10.30.2.19",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 2",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI2-010",
+   "hostname": "PC-POLI2-010",
+   "ip": "10.30.2.20",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 2",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI2-011",
+   "hostname": "PC-POLI2-011",
+   "ip": "10.30.2.21",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 2",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI2-012",
+   "hostname": "PC-POLI2-012",
+   "ip": "10.30.2.22",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 2",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PRN-POLI2-001",
+   "hostname": "PRN-POLI2-001",
+   "ip": "10.30.2.23",
+   "device_type": "printer",
+   "vlan": 30,
+   "unit": "Poli 2",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "SW-POLI3",
+   "hostname": "SW-POLI3",
+   "ip": "10.10.0.13",
+   "device_type": "access_switch",
+   "vlan": 10,
+   "unit": "Poli 3",
+   "status": "healthy",
+   "layer": 3,
+   "meta": {
+    "uplink": "Gi0/48"
+   }
+  },
+  {
+   "id": "PC-POLI3-001",
+   "hostname": "PC-POLI3-001",
+   "ip": "10.30.3.11",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 3",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI3-002",
+   "hostname": "PC-POLI3-002",
+   "ip": "10.30.3.12",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 3",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI3-003",
+   "hostname": "PC-POLI3-003",
+   "ip": "10.30.3.13",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 3",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI3-004",
+   "hostname": "PC-POLI3-004",
+   "ip": "10.30.3.14",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 3",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI3-005",
+   "hostname": "PC-POLI3-005",
+   "ip": "10.30.3.15",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 3",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI3-006",
+   "hostname": "PC-POLI3-006",
+   "ip": "10.30.3.16",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 3",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI3-007",
+   "hostname": "PC-POLI3-007",
+   "ip": "10.30.3.17",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 3",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI3-008",
+   "hostname": "PC-POLI3-008",
+   "ip": "10.30.3.18",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 3",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI3-009",
+   "hostname": "PC-POLI3-009",
+   "ip": "10.30.3.19",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 3",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI3-010",
+   "hostname": "PC-POLI3-010",
+   "ip": "10.30.3.20",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 3",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI3-011",
+   "hostname": "PC-POLI3-011",
+   "ip": "10.30.3.21",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 3",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-POLI3-012",
+   "hostname": "PC-POLI3-012",
+   "ip": "10.30.3.22",
+   "device_type": "pc",
+   "vlan": 30,
+   "unit": "Poli 3",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PRN-POLI3-001",
+   "hostname": "PRN-POLI3-001",
+   "ip": "10.30.3.23",
+   "device_type": "printer",
+   "vlan": 30,
+   "unit": "Poli 3",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "SW-FARMASI",
+   "hostname": "SW-FARMASI",
+   "ip": "10.10.0.14",
+   "device_type": "access_switch",
+   "vlan": 10,
+   "unit": "Farmasi",
+   "status": "healthy",
+   "layer": 3,
+   "meta": {
+    "uplink": "Gi0/48"
+   }
+  },
+  {
+   "id": "PC-FARMASI-001",
+   "hostname": "PC-FARMASI-001",
+   "ip": "10.40.0.11",
+   "device_type": "pc",
+   "vlan": 40,
+   "unit": "Farmasi",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-FARMASI-002",
+   "hostname": "PC-FARMASI-002",
+   "ip": "10.40.0.12",
+   "device_type": "pc",
+   "vlan": 40,
+   "unit": "Farmasi",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-FARMASI-003",
+   "hostname": "PC-FARMASI-003",
+   "ip": "10.40.0.13",
+   "device_type": "pc",
+   "vlan": 40,
+   "unit": "Farmasi",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-FARMASI-004",
+   "hostname": "PC-FARMASI-004",
+   "ip": "10.40.0.14",
+   "device_type": "pc",
+   "vlan": 40,
+   "unit": "Farmasi",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-FARMASI-005",
+   "hostname": "PC-FARMASI-005",
+   "ip": "10.40.0.15",
+   "device_type": "pc",
+   "vlan": 40,
+   "unit": "Farmasi",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-FARMASI-006",
+   "hostname": "PC-FARMASI-006",
+   "ip": "10.40.0.16",
+   "device_type": "pc",
+   "vlan": 40,
+   "unit": "Farmasi",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-FARMASI-007",
+   "hostname": "PC-FARMASI-007",
+   "ip": "10.40.0.17",
+   "device_type": "pc",
+   "vlan": 40,
+   "unit": "Farmasi",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-FARMASI-008",
+   "hostname": "PC-FARMASI-008",
+   "ip": "10.40.0.18",
+   "device_type": "pc",
+   "vlan": 40,
+   "unit": "Farmasi",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-FARMASI-009",
+   "hostname": "PC-FARMASI-009",
+   "ip": "10.40.0.19",
+   "device_type": "pc",
+   "vlan": 40,
+   "unit": "Farmasi",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-FARMASI-010",
+   "hostname": "PC-FARMASI-010",
+   "ip": "10.40.0.20",
+   "device_type": "pc",
+   "vlan": 40,
+   "unit": "Farmasi",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PRN-FARMASI-001",
+   "hostname": "PRN-FARMASI-001",
+   "ip": "10.40.0.21",
+   "device_type": "printer",
+   "vlan": 40,
+   "unit": "Farmasi",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "SW-KASIR",
+   "hostname": "SW-KASIR",
+   "ip": "10.10.0.15",
+   "device_type": "access_switch",
+   "vlan": 10,
+   "unit": "Kasir",
+   "status": "healthy",
+   "layer": 3,
+   "meta": {
+    "uplink": "Gi0/48"
+   }
+  },
+  {
+   "id": "PC-KASIR-001",
+   "hostname": "PC-KASIR-001",
+   "ip": "10.50.0.11",
+   "device_type": "pc",
+   "vlan": 50,
+   "unit": "Kasir",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-KASIR-002",
+   "hostname": "PC-KASIR-002",
+   "ip": "10.50.0.12",
+   "device_type": "pc",
+   "vlan": 50,
+   "unit": "Kasir",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-KASIR-003",
+   "hostname": "PC-KASIR-003",
+   "ip": "10.50.0.13",
+   "device_type": "pc",
+   "vlan": 50,
+   "unit": "Kasir",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-KASIR-004",
+   "hostname": "PC-KASIR-004",
+   "ip": "10.50.0.14",
+   "device_type": "pc",
+   "vlan": 50,
+   "unit": "Kasir",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-KASIR-005",
+   "hostname": "PC-KASIR-005",
+   "ip": "10.50.0.15",
+   "device_type": "pc",
+   "vlan": 50,
+   "unit": "Kasir",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-KASIR-006",
+   "hostname": "PC-KASIR-006",
+   "ip": "10.50.0.16",
+   "device_type": "pc",
+   "vlan": 50,
+   "unit": "Kasir",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-KASIR-007",
+   "hostname": "PC-KASIR-007",
+   "ip": "10.50.0.17",
+   "device_type": "pc",
+   "vlan": 50,
+   "unit": "Kasir",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-KASIR-008",
+   "hostname": "PC-KASIR-008",
+   "ip": "10.50.0.18",
+   "device_type": "pc",
+   "vlan": 50,
+   "unit": "Kasir",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PRN-KASIR-001",
+   "hostname": "PRN-KASIR-001",
+   "ip": "10.50.0.19",
+   "device_type": "printer",
+   "vlan": 50,
+   "unit": "Kasir",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "SW-LAB",
+   "hostname": "SW-LAB",
+   "ip": "10.10.0.16",
+   "device_type": "access_switch",
+   "vlan": 10,
+   "unit": "Laboratorium",
+   "status": "healthy",
+   "layer": 3,
+   "meta": {
+    "uplink": "Gi0/48"
+   }
+  },
+  {
+   "id": "PC-LAB-001",
+   "hostname": "PC-LAB-001",
+   "ip": "10.60.0.11",
+   "device_type": "pc",
+   "vlan": 60,
+   "unit": "Laboratorium",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-LAB-002",
+   "hostname": "PC-LAB-002",
+   "ip": "10.60.0.12",
+   "device_type": "pc",
+   "vlan": 60,
+   "unit": "Laboratorium",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-LAB-003",
+   "hostname": "PC-LAB-003",
+   "ip": "10.60.0.13",
+   "device_type": "pc",
+   "vlan": 60,
+   "unit": "Laboratorium",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-LAB-004",
+   "hostname": "PC-LAB-004",
+   "ip": "10.60.0.14",
+   "device_type": "pc",
+   "vlan": 60,
+   "unit": "Laboratorium",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-LAB-005",
+   "hostname": "PC-LAB-005",
+   "ip": "10.60.0.15",
+   "device_type": "pc",
+   "vlan": 60,
+   "unit": "Laboratorium",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-LAB-006",
+   "hostname": "PC-LAB-006",
+   "ip": "10.60.0.16",
+   "device_type": "pc",
+   "vlan": 60,
+   "unit": "Laboratorium",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-LAB-007",
+   "hostname": "PC-LAB-007",
+   "ip": "10.60.0.17",
+   "device_type": "pc",
+   "vlan": 60,
+   "unit": "Laboratorium",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-LAB-008",
+   "hostname": "PC-LAB-008",
+   "ip": "10.60.0.18",
+   "device_type": "pc",
+   "vlan": 60,
+   "unit": "Laboratorium",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PRN-LAB-001",
+   "hostname": "PRN-LAB-001",
+   "ip": "10.60.0.19",
+   "device_type": "printer",
+   "vlan": 60,
+   "unit": "Laboratorium",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "SW-RADIOLOGI",
+   "hostname": "SW-RADIOLOGI",
+   "ip": "10.10.0.17",
+   "device_type": "access_switch",
+   "vlan": 10,
+   "unit": "Radiologi",
+   "status": "healthy",
+   "layer": 3,
+   "meta": {
+    "uplink": "Gi0/48"
+   }
+  },
+  {
+   "id": "PC-RADIOLOGI-001",
+   "hostname": "PC-RADIOLOGI-001",
+   "ip": "10.70.1.11",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "Radiologi",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-RADIOLOGI-002",
+   "hostname": "PC-RADIOLOGI-002",
+   "ip": "10.70.1.12",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "Radiologi",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-RADIOLOGI-003",
+   "hostname": "PC-RADIOLOGI-003",
+   "ip": "10.70.1.13",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "Radiologi",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-RADIOLOGI-004",
+   "hostname": "PC-RADIOLOGI-004",
+   "ip": "10.70.1.14",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "Radiologi",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-RADIOLOGI-005",
+   "hostname": "PC-RADIOLOGI-005",
+   "ip": "10.70.1.15",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "Radiologi",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-RADIOLOGI-006",
+   "hostname": "PC-RADIOLOGI-006",
+   "ip": "10.70.1.16",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "Radiologi",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-RADIOLOGI-007",
+   "hostname": "PC-RADIOLOGI-007",
+   "ip": "10.70.1.17",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "Radiologi",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-RADIOLOGI-008",
+   "hostname": "PC-RADIOLOGI-008",
+   "ip": "10.70.1.18",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "Radiologi",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "SW-IGD",
+   "hostname": "SW-IGD",
+   "ip": "10.10.0.18",
+   "device_type": "access_switch",
+   "vlan": 10,
+   "unit": "IGD",
+   "status": "healthy",
+   "layer": 3,
+   "meta": {
+    "uplink": "Gi0/48"
+   }
+  },
+  {
+   "id": "PC-IGD-001",
+   "hostname": "PC-IGD-001",
+   "ip": "10.70.2.11",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "IGD",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-IGD-002",
+   "hostname": "PC-IGD-002",
+   "ip": "10.70.2.12",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "IGD",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-IGD-003",
+   "hostname": "PC-IGD-003",
+   "ip": "10.70.2.13",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "IGD",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-IGD-004",
+   "hostname": "PC-IGD-004",
+   "ip": "10.70.2.14",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "IGD",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-IGD-005",
+   "hostname": "PC-IGD-005",
+   "ip": "10.70.2.15",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "IGD",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-IGD-006",
+   "hostname": "PC-IGD-006",
+   "ip": "10.70.2.16",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "IGD",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-IGD-007",
+   "hostname": "PC-IGD-007",
+   "ip": "10.70.2.17",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "IGD",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-IGD-008",
+   "hostname": "PC-IGD-008",
+   "ip": "10.70.2.18",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "IGD",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-IGD-009",
+   "hostname": "PC-IGD-009",
+   "ip": "10.70.2.19",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "IGD",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-IGD-010",
+   "hostname": "PC-IGD-010",
+   "ip": "10.70.2.20",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "IGD",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "SW-REKAMMEDIS",
+   "hostname": "SW-REKAMMEDIS",
+   "ip": "10.10.0.19",
+   "device_type": "access_switch",
+   "vlan": 10,
+   "unit": "Rekam Medis",
+   "status": "healthy",
+   "layer": 3,
+   "meta": {
+    "uplink": "Gi0/48"
+   }
+  },
+  {
+   "id": "PC-REKAMMEDIS-001",
+   "hostname": "PC-REKAMMEDIS-001",
+   "ip": "10.70.3.11",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "Rekam Medis",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-REKAMMEDIS-002",
+   "hostname": "PC-REKAMMEDIS-002",
+   "ip": "10.70.3.12",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "Rekam Medis",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-REKAMMEDIS-003",
+   "hostname": "PC-REKAMMEDIS-003",
+   "ip": "10.70.3.13",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "Rekam Medis",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-REKAMMEDIS-004",
+   "hostname": "PC-REKAMMEDIS-004",
+   "ip": "10.70.3.14",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "Rekam Medis",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-REKAMMEDIS-005",
+   "hostname": "PC-REKAMMEDIS-005",
+   "ip": "10.70.3.15",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "Rekam Medis",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-REKAMMEDIS-006",
+   "hostname": "PC-REKAMMEDIS-006",
+   "ip": "10.70.3.16",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "Rekam Medis",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-REKAMMEDIS-007",
+   "hostname": "PC-REKAMMEDIS-007",
+   "ip": "10.70.3.17",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "Rekam Medis",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-REKAMMEDIS-008",
+   "hostname": "PC-REKAMMEDIS-008",
+   "ip": "10.70.3.18",
+   "device_type": "pc",
+   "vlan": 70,
+   "unit": "Rekam Medis",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "SW-IT",
+   "hostname": "SW-IT",
+   "ip": "10.10.0.20",
+   "device_type": "access_switch",
+   "vlan": 10,
+   "unit": "IT",
+   "status": "healthy",
+   "layer": 3,
+   "meta": {
+    "uplink": "Gi0/48"
+   }
+  },
+  {
+   "id": "PC-IT-001",
+   "hostname": "PC-IT-001",
+   "ip": "10.10.1.11",
+   "device_type": "pc",
+   "vlan": 10,
+   "unit": "IT",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-IT-002",
+   "hostname": "PC-IT-002",
+   "ip": "10.10.1.12",
+   "device_type": "pc",
+   "vlan": 10,
+   "unit": "IT",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-IT-003",
+   "hostname": "PC-IT-003",
+   "ip": "10.10.1.13",
+   "device_type": "pc",
+   "vlan": 10,
+   "unit": "IT",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-IT-004",
+   "hostname": "PC-IT-004",
+   "ip": "10.10.1.14",
+   "device_type": "pc",
+   "vlan": 10,
+   "unit": "IT",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-IT-005",
+   "hostname": "PC-IT-005",
+   "ip": "10.10.1.15",
+   "device_type": "pc",
+   "vlan": 10,
+   "unit": "IT",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  },
+  {
+   "id": "PC-IT-006",
+   "hostname": "PC-IT-006",
+   "ip": "10.10.1.16",
+   "device_type": "pc",
+   "vlan": 10,
+   "unit": "IT",
+   "status": "healthy",
+   "layer": 4,
+   "meta": {}
+  }
+ ],
+ "edges": [
+  {
+   "source": "CORE-SW-01",
+   "target": "RTR-CORE",
+   "source_interface": "Te1/0/24",
+   "target_interface": "Te0/0/0",
+   "link_type": "uplink"
+  },
+  {
+   "source": "SIMRS-APP-01",
+   "target": "RTR-CORE",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/1",
+   "link_type": "server"
+  },
+  {
+   "source": "SIMRS-DB-01",
+   "target": "RTR-CORE",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/2",
+   "link_type": "server"
+  },
+  {
+   "source": "DNS-01",
+   "target": "RTR-CORE",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/3",
+   "link_type": "server"
+  },
+  {
+   "source": "FILE-01",
+   "target": "RTR-CORE",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/4",
+   "link_type": "server"
+  },
+  {
+   "source": "MONITOR-01",
+   "target": "RTR-CORE",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/5",
+   "link_type": "server"
+  },
+  {
+   "source": "SW-DIST-01",
+   "target": "CORE-SW-01",
+   "source_interface": "Te1/0/1",
+   "target_interface": "Te1/0/1",
+   "link_type": "uplink"
+  },
+  {
+   "source": "SW-DIST-02",
+   "target": "CORE-SW-01",
+   "source_interface": "Te1/0/1",
+   "target_interface": "Te1/0/2",
+   "link_type": "uplink"
+  },
+  {
+   "source": "SW-POLI1",
+   "target": "SW-DIST-01",
+   "source_interface": "Gi0/48",
+   "target_interface": "Gi0/1",
+   "link_type": "uplink"
+  },
+  {
+   "source": "PC-POLI1-001",
+   "target": "SW-POLI1",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/1",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI1-002",
+   "target": "SW-POLI1",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/2",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI1-003",
+   "target": "SW-POLI1",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/3",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI1-004",
+   "target": "SW-POLI1",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/4",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI1-005",
+   "target": "SW-POLI1",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/5",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI1-006",
+   "target": "SW-POLI1",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/6",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI1-007",
+   "target": "SW-POLI1",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/7",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI1-008",
+   "target": "SW-POLI1",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/8",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI1-009",
+   "target": "SW-POLI1",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/9",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI1-010",
+   "target": "SW-POLI1",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/10",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI1-011",
+   "target": "SW-POLI1",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/11",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI1-012",
+   "target": "SW-POLI1",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/12",
+   "link_type": "access"
+  },
+  {
+   "source": "PRN-POLI1-001",
+   "target": "SW-POLI1",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/13",
+   "link_type": "access"
+  },
+  {
+   "source": "SW-POLI2",
+   "target": "SW-DIST-01",
+   "source_interface": "Gi0/48",
+   "target_interface": "Gi0/2",
+   "link_type": "uplink"
+  },
+  {
+   "source": "PC-POLI2-001",
+   "target": "SW-POLI2",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/1",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI2-002",
+   "target": "SW-POLI2",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/2",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI2-003",
+   "target": "SW-POLI2",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/3",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI2-004",
+   "target": "SW-POLI2",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/4",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI2-005",
+   "target": "SW-POLI2",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/5",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI2-006",
+   "target": "SW-POLI2",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/6",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI2-007",
+   "target": "SW-POLI2",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/7",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI2-008",
+   "target": "SW-POLI2",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/8",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI2-009",
+   "target": "SW-POLI2",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/9",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI2-010",
+   "target": "SW-POLI2",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/10",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI2-011",
+   "target": "SW-POLI2",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/11",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI2-012",
+   "target": "SW-POLI2",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/12",
+   "link_type": "access"
+  },
+  {
+   "source": "PRN-POLI2-001",
+   "target": "SW-POLI2",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/13",
+   "link_type": "access"
+  },
+  {
+   "source": "SW-POLI3",
+   "target": "SW-DIST-01",
+   "source_interface": "Gi0/48",
+   "target_interface": "Gi0/3",
+   "link_type": "uplink"
+  },
+  {
+   "source": "PC-POLI3-001",
+   "target": "SW-POLI3",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/1",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI3-002",
+   "target": "SW-POLI3",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/2",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI3-003",
+   "target": "SW-POLI3",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/3",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI3-004",
+   "target": "SW-POLI3",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/4",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI3-005",
+   "target": "SW-POLI3",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/5",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI3-006",
+   "target": "SW-POLI3",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/6",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI3-007",
+   "target": "SW-POLI3",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/7",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI3-008",
+   "target": "SW-POLI3",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/8",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI3-009",
+   "target": "SW-POLI3",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/9",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI3-010",
+   "target": "SW-POLI3",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/10",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI3-011",
+   "target": "SW-POLI3",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/11",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-POLI3-012",
+   "target": "SW-POLI3",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/12",
+   "link_type": "access"
+  },
+  {
+   "source": "PRN-POLI3-001",
+   "target": "SW-POLI3",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/13",
+   "link_type": "access"
+  },
+  {
+   "source": "SW-FARMASI",
+   "target": "SW-DIST-01",
+   "source_interface": "Gi0/48",
+   "target_interface": "Gi0/4",
+   "link_type": "uplink"
+  },
+  {
+   "source": "PC-FARMASI-001",
+   "target": "SW-FARMASI",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/1",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-FARMASI-002",
+   "target": "SW-FARMASI",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/2",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-FARMASI-003",
+   "target": "SW-FARMASI",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/3",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-FARMASI-004",
+   "target": "SW-FARMASI",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/4",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-FARMASI-005",
+   "target": "SW-FARMASI",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/5",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-FARMASI-006",
+   "target": "SW-FARMASI",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/6",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-FARMASI-007",
+   "target": "SW-FARMASI",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/7",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-FARMASI-008",
+   "target": "SW-FARMASI",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/8",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-FARMASI-009",
+   "target": "SW-FARMASI",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/9",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-FARMASI-010",
+   "target": "SW-FARMASI",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/10",
+   "link_type": "access"
+  },
+  {
+   "source": "PRN-FARMASI-001",
+   "target": "SW-FARMASI",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/11",
+   "link_type": "access"
+  },
+  {
+   "source": "SW-KASIR",
+   "target": "SW-DIST-01",
+   "source_interface": "Gi0/48",
+   "target_interface": "Gi0/5",
+   "link_type": "uplink"
+  },
+  {
+   "source": "PC-KASIR-001",
+   "target": "SW-KASIR",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/1",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-KASIR-002",
+   "target": "SW-KASIR",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/2",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-KASIR-003",
+   "target": "SW-KASIR",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/3",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-KASIR-004",
+   "target": "SW-KASIR",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/4",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-KASIR-005",
+   "target": "SW-KASIR",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/5",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-KASIR-006",
+   "target": "SW-KASIR",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/6",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-KASIR-007",
+   "target": "SW-KASIR",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/7",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-KASIR-008",
+   "target": "SW-KASIR",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/8",
+   "link_type": "access"
+  },
+  {
+   "source": "PRN-KASIR-001",
+   "target": "SW-KASIR",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/9",
+   "link_type": "access"
+  },
+  {
+   "source": "SW-LAB",
+   "target": "SW-DIST-02",
+   "source_interface": "Gi0/48",
+   "target_interface": "Gi0/1",
+   "link_type": "uplink"
+  },
+  {
+   "source": "PC-LAB-001",
+   "target": "SW-LAB",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/1",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-LAB-002",
+   "target": "SW-LAB",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/2",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-LAB-003",
+   "target": "SW-LAB",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/3",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-LAB-004",
+   "target": "SW-LAB",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/4",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-LAB-005",
+   "target": "SW-LAB",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/5",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-LAB-006",
+   "target": "SW-LAB",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/6",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-LAB-007",
+   "target": "SW-LAB",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/7",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-LAB-008",
+   "target": "SW-LAB",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/8",
+   "link_type": "access"
+  },
+  {
+   "source": "PRN-LAB-001",
+   "target": "SW-LAB",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/9",
+   "link_type": "access"
+  },
+  {
+   "source": "SW-RADIOLOGI",
+   "target": "SW-DIST-02",
+   "source_interface": "Gi0/48",
+   "target_interface": "Gi0/2",
+   "link_type": "uplink"
+  },
+  {
+   "source": "PC-RADIOLOGI-001",
+   "target": "SW-RADIOLOGI",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/1",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-RADIOLOGI-002",
+   "target": "SW-RADIOLOGI",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/2",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-RADIOLOGI-003",
+   "target": "SW-RADIOLOGI",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/3",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-RADIOLOGI-004",
+   "target": "SW-RADIOLOGI",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/4",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-RADIOLOGI-005",
+   "target": "SW-RADIOLOGI",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/5",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-RADIOLOGI-006",
+   "target": "SW-RADIOLOGI",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/6",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-RADIOLOGI-007",
+   "target": "SW-RADIOLOGI",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/7",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-RADIOLOGI-008",
+   "target": "SW-RADIOLOGI",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/8",
+   "link_type": "access"
+  },
+  {
+   "source": "SW-IGD",
+   "target": "SW-DIST-02",
+   "source_interface": "Gi0/48",
+   "target_interface": "Gi0/3",
+   "link_type": "uplink"
+  },
+  {
+   "source": "PC-IGD-001",
+   "target": "SW-IGD",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/1",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-IGD-002",
+   "target": "SW-IGD",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/2",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-IGD-003",
+   "target": "SW-IGD",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/3",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-IGD-004",
+   "target": "SW-IGD",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/4",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-IGD-005",
+   "target": "SW-IGD",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/5",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-IGD-006",
+   "target": "SW-IGD",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/6",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-IGD-007",
+   "target": "SW-IGD",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/7",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-IGD-008",
+   "target": "SW-IGD",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/8",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-IGD-009",
+   "target": "SW-IGD",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/9",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-IGD-010",
+   "target": "SW-IGD",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/10",
+   "link_type": "access"
+  },
+  {
+   "source": "SW-REKAMMEDIS",
+   "target": "SW-DIST-02",
+   "source_interface": "Gi0/48",
+   "target_interface": "Gi0/4",
+   "link_type": "uplink"
+  },
+  {
+   "source": "PC-REKAMMEDIS-001",
+   "target": "SW-REKAMMEDIS",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/1",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-REKAMMEDIS-002",
+   "target": "SW-REKAMMEDIS",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/2",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-REKAMMEDIS-003",
+   "target": "SW-REKAMMEDIS",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/3",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-REKAMMEDIS-004",
+   "target": "SW-REKAMMEDIS",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/4",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-REKAMMEDIS-005",
+   "target": "SW-REKAMMEDIS",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/5",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-REKAMMEDIS-006",
+   "target": "SW-REKAMMEDIS",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/6",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-REKAMMEDIS-007",
+   "target": "SW-REKAMMEDIS",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/7",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-REKAMMEDIS-008",
+   "target": "SW-REKAMMEDIS",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/8",
+   "link_type": "access"
+  },
+  {
+   "source": "SW-IT",
+   "target": "SW-DIST-02",
+   "source_interface": "Gi0/48",
+   "target_interface": "Gi0/5",
+   "link_type": "uplink"
+  },
+  {
+   "source": "PC-IT-001",
+   "target": "SW-IT",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/1",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-IT-002",
+   "target": "SW-IT",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/2",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-IT-003",
+   "target": "SW-IT",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/3",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-IT-004",
+   "target": "SW-IT",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/4",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-IT-005",
+   "target": "SW-IT",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/5",
+   "link_type": "access"
+  },
+  {
+   "source": "PC-IT-006",
+   "target": "SW-IT",
+   "source_interface": "eth0",
+   "target_interface": "Gi0/6",
+   "link_type": "access"
+  }
+ ]
+}
