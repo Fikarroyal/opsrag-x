@@ -30,19 +30,6 @@ Agen membaca tiket, memilih SOP yang berlaku **pada waktu kejadian**, mencari in
 
 <br>
 
-## <img src="docs/assets/icons/target.svg" width="26" align="top"> Masalah dan tujuan
-
-Di RS, satu atau dua staf IT menangani jaringan, server, SIMRS, printer, dan perangkat unit. Saat tiket "SIMRS tidak bisa dibuka dari Poli 3" masuk, mereka harus mengingat SOP versi mana yang berlaku, mencari kejadian serupa, memeriksa log beberapa perangkat, dan menentukan urutan sebab-akibat secara manual.
-
-Tujuan OpsRAG-X:
-
-- mempercepat investigasi dengan evidence terstruktur (`FACT` / `INFERENCE` / `UNKNOWN`);
-- memakai konteks **waktu** (versi SOP saat kejadian, peluruhan relevansi insiden lama, urutan kejadian di log);
-- **menolak menyimpulkan** root cause bila evidence langsung tidak cukup;
-- menyimpan seluruh langkah agar dapat diaudit dan di-*replay*.
-
-<br>
-
 ## <img src="docs/assets/icons/sparkles.svg" width="26" align="top"> Fitur
 
 | | Fitur | Keterangan |
