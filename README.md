@@ -16,20 +16,6 @@
 **OpsRAG-X** adalah *investigation agent* (bukan chatbot, bukan agen remediasi otomatis) yang membantu tim IT rumah sakit dalam menyelidiki insiden infrastruktur.
 Agen membaca tiket, memilih SOP yang berlaku **pada waktu kejadian**, mencari insiden historis, memeriksa topologi, memanggil tool MCP **read-only**, mengorelasikan log secara temporal, menyusun hipotesis, menghitung *evidence confidence score*, lalu menghasilkan laporan beserta jejak audit.
 
-## <img src="docs/assets/icons/table-of-contents.svg" width="26" align="top"> Daftar isi
-
-| | | |
-|---|---|---|
-| [Masalah dan tujuan](#masalah-dan-tujuan) | [Arsitektur database](#arsitektur-database) | [Testing dan validasi](#testing-dan-validasi) |
-| [Fitur](#fitur) | [Arsitektur RAG](#arsitektur-rag) | [Benchmark dan eksperimen A-D](#benchmark-dan-eksperimen-a-d) |
-| [Arsitektur](#arsitektur) | [Arsitektur MCP](#arsitektur-mcp) | [Fine-tuning LoRA](#fine-tuning-lora-opsional) |
-| [Tech stack](#tech-stack) | [Alur investigasi](#alur-investigasi) | [Data Privacy and Safety](#data-privacy-and-safety) |
-| [Instalasi dan menjalankan](#instalasi-dan-menjalankan) | [Skenario insiden](#skenario-insiden) | [Kebaruan riset](#kebaruan-riset-research-novelty) |
-| [Konfigurasi](#konfigurasi) | [API](#api) | [Keterbatasan yang diketahui](#keterbatasan-yang-diketahui) |
-| [Akun dan keamanan sesi](#akun-dan-keamanan-sesi) | [Frontend](#frontend) | [Roadmap](#roadmap) |
-
-<br>
-
 ## <img src="docs/assets/icons/sparkles.svg" width="26" align="top"> Fitur
 
 | | Fitur | Keterangan |
@@ -426,38 +412,3 @@ Folder `training/` berisi pembangkit dataset (klasifikasi, pemilihan tool, forma
 > Untuk penggunaan nyata: tambahkan otorisasi yang lebih rinci (RBAC), TLS, pembatasan jaringan MCP, dan kebijakan retensi log.
 
 <br>
-
-## <img src="docs/assets/icons/lightbulb.svg" width="26" align="top"> Kebaruan riset (research novelty)
-
-1. **Retrieval versi-sadar waktu**: SOP dipilih berdasarkan versi yang berlaku pada saat insiden, bukan versi terbaru.
-2. **Peluruhan temporal berbeda per sumber** (historis, SOP, log) dalam skor hibrida yang dapat diaudit.
-3. **Evidence terpisah dari inferensi**: `FACT` / `INFERENCE` / `UNKNOWN` dengan relasi temporal dan peran, sehingga kontradiksi tercatat.
-4. **Gating evidence langsung**: konteks saja (SOP, riwayat) tidak cukup untuk menyimpulkan root cause; sistem lebih memilih "belum dapat ditentukan".
-5. **Audit dan replay** investigasi dengan snapshot konfigurasi/input serta perbandingan antar-run.
-
-<br>
-
-## <img src="docs/assets/icons/triangle-alert.svg" width="26" align="top"> Keterbatasan yang diketahui
-
-- **Skala vektor**: mode lokal SQLite menghitung kemiripan vektor di Python (bukan pgvector); cukup untuk data contoh, bukan untuk skala besar.
-- **Data sintetis**: seluruh data dan benchmark sintetis; tidak ada evaluasi pada infrastruktur nyata. Generalisasi belum terbukti.
-- **Embedding validasi**: yang dipakai adalah `hashing-lexical-384`, **bukan** `bge-small-en-v1.5`. Jalur sentence-transformers tersedia tetapi tidak dijalankan di lingkungan validasi.
-- **Jalur LLM**: Ollama **belum diuji** dengan model sungguhan; seluruh hasil di atas berasal dari mode fallback (aturan).
-- **Docker**: `docker-compose.yml` valid secara sintaks (`docker compose config`), tetapi `docker compose up --build` **belum berhasil diverifikasi**. Daemon Docker dapat dijalankan di sandbox pembuatan, namun registry Docker Hub diblokir (HTTP 403) sehingga image dasar (`python`, `node`, `nginx`, `pgvector`) tidak bisa di-pull. Jalankan di mesin dengan akses internet biasa dan laporkan bila ada galat.
-- **LoRA**: dataset dan skrip tersedia, tetapi **loop pelatihan belum dieksekusi** (tanpa GPU/`peft`); tidak ada klaim hasil model fine-tuned.
-- **Klasifikasi benchmark**: 0.98 (49/50); satu tiket farmasi ambigu diklasifikasikan network, bukan application.
-- **Antrean job**: investigasi berjalan via `BackgroundTasks` (satu proses); belum ada antrean terdistribusi.
-- **Otorisasi**: autentikasi akun dan sesi sudah ada, tetapi peran (`admin`, `it_support`) belum membedakan hak akses per endpoint (RBAC rinci belum ada).
-- **Temporal**: pada benchmark ini pembobotan temporal menurunkan precision@8 (lihat catatan di bagian benchmark).
-- **Bundle frontend**: sekitar 730 kB (belum di-*code-split*).
-
-<br>
-
-## <img src="docs/assets/icons/map.svg" width="26" align="top"> Roadmap
-
-- [ ] RBAC per peran pada endpoint API
-- [ ] Antrean job (mis. worker terpisah)
-- [ ] Code-splitting frontend
-- [ ] Evaluasi dengan embedding sentence-transformers dan LLM lokal
-- [ ] Integrasi sumber monitoring nyata (SNMP/Zabbix/Prometheus) lewat tool MCP read-only baru
-- [ ] Evaluasi LoRA bila GPU tersedia
